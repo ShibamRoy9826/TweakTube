@@ -110,3 +110,24 @@ div#icon-label{
 div#voice-search-button{
     background-color:var(--bg2) !important;
 }
+
+iron-selector#chip,ytd-feed-filter-chip-bar-renderer{
+    background-color:var(--bg2) !important;
+}
+ytd-mini-guide-renderer{
+    background-color:var(--bg2) !important;
+}
+ytd-mini-guide-entry-renderer{
+    background-color:var(--bg2) !important;
+    color:var(--fg) !important;
+}
+a.ytd-mini-guide-entry-renderer{
+    color:var(--fg2) !important;
+}
+#chips-wrapper.ytd-feed-filter-chip-bar-renderer{
+    background-color:var(--bg) !important;
+}
+
+#left-arrow-button.ytd-feed-filter-chip-bar-renderer, #right-arrow-button.ytd-feed-filter-chip-bar-renderer{
+    background-color:var(--bg) !important;
+}
