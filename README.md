@@ -1,3 +1,5 @@
+# TweakTube
+
 ![logo](assets/logo_128.png)
 
 A chrome extension that allows you to customize [youtube](https://youtube.com) to your liking!
@@ -13,10 +15,13 @@ A chrome extension that allows you to customize [youtube](https://youtube.com) t
 - Comes with 9 different themes excluding the default one
 - Is extremely simple to use!
 
-## Screenshots
+## Screenshots 📷
 
 Here are a few screenshots of some of them themes and customizations:-
 If you notice properly, shorts, the sidebar, and categories section are not there!
+
+> [!NOTE]
+> Some screenshots have a white tint on them for some reason, they don't look like so irl, I will try to upload proper screenshots soon
 
 #### Catppuccin Mocha
 <img src="Screenshots/mocha.png" width="50%">
@@ -53,16 +58,16 @@ git clone https://github.com/ShibamRoy9826/tweaktube.git
 
 3. Done! Now you've TweakTubes installed! Try it out and give me some feedback :) 
 
-## Known Bugs
+## Known Bugs 🐞
 
 - A dark shadow appears in the categories bar which doesn't change even after changing theme
 - Extended sidebar and community posts still don't have any effect after changing the theme
 
-## To-Do list
+## To-Do list ✏️
 
-- [] Add a youtube video download too
+- [ ] Add a youtube video download too
 
-## Contributing 🤝
+## Contributing 🙏
 
 Everyone is welcome to contribute to the code!
 You can also raise an issue, or suggest any features that you think would be great :)
