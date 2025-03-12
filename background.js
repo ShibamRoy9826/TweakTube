@@ -19,7 +19,11 @@ chrome.action.onClicked.addListener(async (tab) => {
 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (tabs.length === 0) return; // No active tab
     chrome.storage.local.get("theme", (data) => {
-        setTheme(data.theme,tabs[0].id)
+        if(data.theme==undefined){
+          chrome.storage.local.set({theme:"default"});
+        }else{
+          setTheme(data.theme,tabs[0].id)
+        }
     });
 });
 
@@ -28,6 +32,5 @@ if(message.theme!==undefined && message.tabID!==undefined){
     setTheme(message.theme,message.tabID);
      // sending message to worker to apply theme
     chrome.runtime.sendMessage({ action: "applyCSS",theme:message.theme,tabID:message.tabID });
-    
 }
 });
