@@ -34,6 +34,10 @@ If you notice properly, shorts, the sidebar, and categories section are not ther
 
 More themes include - Catpuccin-Frappe, Catppuccin-Macchiato, Nord, rosepine, Solarized-dark,Solarized-light. I will add screenshots of the rest later:)
 
+## Privacy Policy 🔒
+
+This extension doesn't send me any data whatsoever! I do not plan to collect data or sell them anywhere. It only stores the selected options locally in your own device.
+
 ## Installation 🛠️
 
 Installation is really simple! All you need to do is download this repository.
