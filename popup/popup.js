@@ -54,14 +54,25 @@ hcats.addEventListener("change", () => {
 themeSelect=document.getElementById("theme");
 
 // Checking if there's already a theme set
+
 chrome.storage.local.get("theme", (data) => {
     themeSelect.value=data.theme || "default";
+    const currTheme = themeSelect.value;
+    chrome.storage.local.set({ theme:currTheme});
+
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs[0]) {
+            chrome.tabs.sendMessage(tabs[0].id, { theme:currTheme,tabID:tabs[0].id });
+        }
+    });
+
 });
+
+
 // If user changed it, set the new one
 themeSelect.addEventListener("change", () => {
     const currTheme = themeSelect.value;
     chrome.storage.local.set({ theme:currTheme});
-
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         if (tabs[0]) {
             chrome.tabs.sendMessage(tabs[0].id, { theme:currTheme,tabID:tabs[0].id });

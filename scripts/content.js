@@ -80,8 +80,10 @@ const observer = new MutationObserver(() =>{
     if (data.hidesidebar) {
         hideSidebar();
     } 
+
   });
 });
+
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.hideshorts !== undefined) {
