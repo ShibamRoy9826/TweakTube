@@ -2,11 +2,14 @@
     <head>
         <title>TweakTube</title>
         <link rel="stylesheet" type="text/css" href="popup.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
     </head>
     <body>
         
-        <div style="display:flex;flex-direction:column;width:250px;height:300px; justify-content: center;">
-            <div style="display:flex;flex-direction:row; align-items: center; justify-content: center;width:100%;margin-bottom:1rem;">
+        <div id="opt-container">
+            <div id="logo-container">
                 <img src="../assets/logo_32.png" style="width:auto;margin-right:0.5rem;" alt="Logo">
                 <h1 style="display:flex;flex-direction:row;text-align: center;width:auto;margin:0;">
                     TweakTube</h1>
@@ -15,31 +18,36 @@
                 
             <div class="optionContainer">
                 <h3>Disable yt shorts</h3>
-                <label id="switch">
-                    <input type="checkbox" checked="true" id="hideshorts">
-                    <span id="slider"></span>
-                </label>
+                <input type="checkbox" checked="true" id="hideshorts" class="switch">
             </div>
 
             <div class="optionContainer">
                 <h3>Remove Sidebar</h3>
-                <label id="switch">
-                    
-                    <input type="checkbox" checked="true" id="hidesidebar">
-                    <span id="slider"></span>
-                </label>
+                <input type="checkbox" checked="true" id="hidesidebar" class="switch">
             </div>
 
             <div class="optionContainer">
                 <h3>Remove categories</h3>
-                <label id="switch">
-                    
-                    <input type="checkbox" checked="true" id="hidecategories">
-                    <span id="slider"></span>
-                </label>
+                <input type="checkbox" checked="true" id="hidecategories" class="switch">
             </div>
 
-            <div class="themeCont" style="display:flex;flex-direction:row;">
+
+            <div class="optionContainer">
+                <h3>No feed</h3>
+                <input type="checkbox" checked="false" id="hidehome" class="switch">
+            </div>
+
+            <div class="optionContainer">
+                <h3>No video suggestions</h3>
+                <input type="checkbox" checked="false" id="hidesuggestions" class="switch">
+            </div>
+
+            <div class="optionContainer">
+                <h3>No Hamburger menu</h3>
+                <input type="checkbox" checked="false" id="hideham" class="switch">
+            </div>
+
+            <div class="themeCont" style="display:flex;flex-direction:row;justify-content:center;margin-top:0.5rem">
                 <h3>Theme: </h3>
                 <label for="theme"></label>
                     <select id="theme">
@@ -56,6 +64,11 @@
 
                     </select>
             </div>    
+            <p id="self-promo">Made with 
+
+<svg viewBox="0 0 16 16" fill="none"  height="15px" width="15px" style="margin-left:5px;" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z" fill="#9546fc" data-darkreader-inline-fill="" style="--darkreader-inline-fill: var(--darkreader-background-000000, #9546fc);"></path> </g></svg>
+
+              <br>by <a href="https://shibamroy9826.github.io/" target="__blank" id="portfolio-link">Shibam Roy</a> :)</p>
         </div>
         <script src="popup.js"></script>
     </body>

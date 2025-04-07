@@ -16,7 +16,7 @@ function hideCategories(){
 function hideSidebar(){
   const sidebar=document.querySelector("ytd-mini-guide-renderer");
   if(sidebar){
-    sidebar.style.display="none";
+    sidebar.remove()
   }
 }
 
@@ -24,19 +24,19 @@ function hideShorts(){
   // Toggling shorts from sidebar
   const sidebarShorts = document.querySelector("ytd-mini-guide-entry-renderer[aria-label='Shorts']");
   if (sidebarShorts && !toggledShorts) {
-    sidebarShorts.style.display = "none";
+    sidebarShorts.remove()
     toggledShorts=true;
   }
   // Toggling shorts from extended sidebar
   const sidebarExShorts=document.querySelector("a.yt-simple-endpoint[title='Shorts']");
   if(sidebarExShorts){
-    sidebarExShorts.style.display="none";
+    sidebarExShorts.remove()
   }
   // Toggling shorts sections
   const shortVid=document.querySelectorAll("ytd-rich-item-renderer[is-slim-media]");
   if(shortVid){
     shortVid.forEach((e)=>{
-      e.style.display="none";
+      e.remove()
     });
   }
   // Toggling shorts 
@@ -62,6 +62,73 @@ function hideShorts(){
 
 }
 
+function checkhome() {
+    const url= window.location.href;
+    return /^https?:\/\/(www\.)?youtube\.com\/?$/.test(url);
+}
+
+function hideHome(){
+
+  const home=document.querySelector("#contents");
+  const searchCont=document.querySelector("#center.style-scope.ytd-masthead");
+  const logo=document.querySelector("#logo-icon");
+  const country=document.querySelector("#country-code");
+
+  if (checkhome()){
+    if(home){ 
+      home.style.display="none";
+    }
+    if(searchCont){
+      searchCont.style.position="relative";
+      searchCont.style.top="50vh";
+    }
+    if(logo){
+      logo.style.position="absolute";
+      logo.style.top="20vh";
+      logo.style.left="30vw";
+      logo.style.width="30vw";
+      logo.style.height="20vh";
+    }
+    if(country){
+      country.style.position="absolute";
+      country.style.top="25vh";
+      country.style.left="62vw";
+    }
+  }
+  else{
+    if(home){ 
+      home.style.display="";
+    }
+    if(searchCont){
+      searchCont.style.position="relative";
+      searchCont.style.top="0px";
+    }
+    if(logo){
+      logo.style.position="absolute";
+      logo.style.top="0px";
+      logo.style.left="2vh";
+      logo.style.width="98px";
+      logo.style.height="20px";
+    }
+    if(country){
+      country.style.display="none";
+    }
+  }
+
+}
+
+function hideSuggestions(){
+  const div=document.querySelector("#secondary");
+  div.remove();
+}
+
+function hideHam(){
+  const ham=document.querySelector("#guide-button.style-scope.ytd-masthead");
+  if(ham){
+    ham.remove();
+  }
+
+}
 
 
 const observer = new MutationObserver(() =>{
@@ -72,7 +139,6 @@ const observer = new MutationObserver(() =>{
   });
   chrome.storage.local.get("hidecategories", (data) => {
     if (data.hidecategories) {
-        console.log("Hiding categories");
         hideCategories();
     } 
   });
@@ -80,7 +146,36 @@ const observer = new MutationObserver(() =>{
     if (data.hidesidebar) {
         hideSidebar();
     } 
+  });
 
+  chrome.storage.local.get("hideham", (data) => {
+    if (data.hideham) {
+        hideHam();
+    } 
+  });
+
+  chrome.storage.local.get("hidehome", (data) => {
+    if (data.hidehome) {
+        hideHome();
+        window.addEventListener("popstate",hideHome());
+        const ogPush= history.pushState;
+        history.pushState = function(...args) {
+            ogPush.apply(this, args);
+            hideHome();
+        };
+
+        const ogReplace= history.replaceState;
+        history.replaceState = function(...args) {
+            ogReplace.apply(this, args);
+            hideHome();
+        };
+    } 
+  });
+
+  chrome.storage.local.get("hidesuggestions", (data) => {
+    if (data.hidesuggestions) {
+        hideSuggestions();
+    } 
   });
 });
 
@@ -101,6 +196,24 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       hideSidebar();
     }
   }
+
+  if(message.hidesidebar!==undefined){
+    if(message.hidesuggestions){
+      hideSuggestions();
+    }
+  }
+
+  if(message.hidesidebar!==undefined){
+    if(message.hidehome){
+      hideHome();
+    }
+  }
+
+  if(message.hidesidebar!==undefined){
+    if(message.hideham){
+      hideham();
+    }
+  }
   if(message.theme!==undefined && message.tabID!==undefined){
       // sending message to worker to apply theme
       chrome.runtime.sendMessage({ action: "applyCSS",theme:message.theme,tabID:message.tabID });
@@ -108,4 +221,3 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 observer.observe(document.body, { childList: true, subtree: true });
-

@@ -2,6 +2,9 @@
 const hshorts = document.getElementById("hideshorts");
 const hside=document.getElementById("hidesidebar");
 const hcats=document.getElementById("hidecategories");
+const hhome=document.getElementById("hidehome");
+const hsug=document.getElementById("hidesuggestions");
+const hham=document.getElementById("hideham");
 
 
 // Checking if they are already set
@@ -13,6 +16,18 @@ chrome.storage.local.get("hidesidebar", (data) => {
 });
 chrome.storage.local.get("hidecategories", (data) => {
     hcats.checked = data.hidecategories || false;
+});
+
+chrome.storage.local.get("hidehome", (data) => {
+    hhome.checked = data.hidehome || false;
+});
+
+chrome.storage.local.get("hidesuggestions", (data) => {
+    hsug.checked = data.hidesuggestions || false;
+});
+
+chrome.storage.local.get("hideham", (data) => {
+    hham.checked = data.hideham|| false;
 });
 
 // If the switches are changed, set the local variable
@@ -49,6 +64,45 @@ hcats.addEventListener("change", () => {
         }
     });
 });
+
+
+// for removing homescreen feed
+hhome.addEventListener("change", () => {
+    const is_home_enabled = hhome.checked;
+    chrome.storage.local.set({ hidehome:is_home_enabled});
+
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs[0]) {
+            chrome.tabs.sendMessage(tabs[0].id, { hidehome: is_home_enabled});
+        }
+    });
+});
+
+// For removing suggestions
+hsug.addEventListener("change", () => {
+    const is_sug_enabled = hsug.checked;
+    chrome.storage.local.set({ hidesuggestions:is_sug_enabled});
+
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs[0]) {
+            chrome.tabs.sendMessage(tabs[0].id, { hidesuggestions: is_sug_enabled});
+        }
+    });
+});
+
+// For removing hamburger icon
+hham.addEventListener("change", () => {
+    const is_ham_enabled = hham.checked;
+    chrome.storage.local.set({ hideham:is_ham_enabled});
+
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs[0]) {
+            chrome.tabs.sendMessage(tabs[0].id, { hideham: is_ham_enabled});
+        }
+    });
+});
+
+
 
 // Theme stuff - ---------------------------------------------------
 themeSelect=document.getElementById("theme");

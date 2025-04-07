@@ -1,63 +1,23 @@
+:root{
+  --fg:#cdd6f4;
+  --fg2:#585b70;
+  --bg:#11111b;
+  --bg2:#313244;
+  --primary: #9546fc;
+  --secondary:#2a0d4f;
+  --tertiary: #89b4fa;
+}
+
+@font-face {
+  font-family: "DynaPuff";
+  src: url('../assets/fonts/DynaPuff.ttf') format('ttf');
+}
+
 html{
-    background: #11111b;
-    color:#cdd6f4;
+    background: var(--bg);
+    color: var(--fg);
     border-radius:1rem;
-}
-#switch {
-    font-size: 1rem;
-    color:white;
-    position: relative;
-    display: inline-block;
-    width: 3rem;
-    height: 1.2rem;
-    border:none;
-    margin:1rem
-   }
-
-#switch input {
-    display: none;
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-#slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #303030;
-    transition: .2s;
-    border-radius: 1rem;
-}
-
-#slider:before {
-    position: absolute;
-    content: "";
-    height: 1.1rem;
-    width: 1.1rem;
-    border-radius: 1rem;
-    bottom:1px;
-    background-color: gray;
-    transition: .4s;
-}
-
-#switch input:checked + #slider::before {
-    background-color: #9546fc;
-}
-
-#switch input:checked + #slider {
-    background-color: #43177d;
-}
-
-#switch input:focus + #slider {
-    box-shadow: 0 0 1px #9546fc;
-}
-
-#switch input:checked + #slider:before {
-    transform: translateX(1.9em);
+    padding:0rem;
 }
 
 .optionContainer{
@@ -68,17 +28,95 @@ html{
 }
 
 h3{
-    color:#cdd6f4;
+    color:var(--fg);
+    font-family: "DynaPuff";
+    font-style: normal;
+    font-weight: 200;
 }
+
 h1{
     color:white;
+    font-family: "DynaPuff";
+    font-style: normal;
+    font-weight: 400;
 }
 
 select{
-    background-color:#313244;
+    background-color:var(--bg2);
     color:white;
+    font-family: "DynaPuff";
     margin-left:1rem;
+    width:150px;
     border-radius:0.5rem;
     padding:0;
-    border: 1px solid #89b4fa;
+    appearance: none;
+    outline: 10px var(--tertiary);
+    border: 2px solid var(--tertiary);
+    box-shadow: none;
+    padding: 0 1em;
+    background-image: none;
+    cursor: pointer;
+}
+
+/*Option container */
+#opt-container{
+  display:flex;
+  flex-direction:column;
+  width:300px;
+  height:auto;
+  justify-content: center;
+  margin-bottom:1rem;
+}
+
+#logo-container{
+  display:flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: center;
+  width:100%;
+  margin-bottom:1rem;
+  margin-top:1rem;
+}
+
+#self-promo{
+  text-align:center;
+  font-size: 0.9rem;
+  color:var(--fg2);
+  font-family: "DynaPuff";
+  font-style: normal;
+  font-weight: 400;
+}
+
+.switch{
+  -webkit-appearance:none;
+  position:relative;
+  background-color:var(--bg2);
+  width: 50px;
+  height:20px;
+  border-radius:0.5rem;
+  margin-left:1rem;
+  transition:all 0.5s ease;
+  cursor:pointer;
+}
+.switch::before{
+  content:"";
+  position:absolute;
+  height:20px;
+  width:20px;
+  left:0;
+  background-color:var(--fg2);
+  transform:scale(1.1);
+  transition:all 0.5s ease;
+  border-radius:100%;
+}
+.switch:checked{
+  background-color:var(--secondary);
+}
+.switch:checked::before{
+  background-color:var(--primary);
+  left:30px;
+}
+
+#portfolio-link{
+  color:var(--primary);
 }
