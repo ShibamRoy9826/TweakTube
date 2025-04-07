@@ -106,7 +106,7 @@ function hideHome(){
     if(logo){
       logo.style.position="absolute";
       logo.style.top="0px";
-      logo.style.left="2vh";
+      logo.style.left="3vw";
       logo.style.width="98px";
       logo.style.height="20px";
     }
