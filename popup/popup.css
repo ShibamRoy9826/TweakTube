@@ -78,7 +78,7 @@ select{
   margin-top:1rem;
 }
 
-#self-promo{
+#self-promo, #info{
   text-align:center;
   font-size: 0.9rem;
   color:var(--fg2);
