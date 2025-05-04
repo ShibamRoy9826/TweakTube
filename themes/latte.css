@@ -6,7 +6,9 @@
     --primary:#1e66f5;
     --secondary:#d20f39;
 }
-
+ytd-app,#frosted-glass.with-chipbar.ytd-app{
+    background-color:var(--bg) !important;
+}
 div#content{
     background-color:var(--bg);
 }

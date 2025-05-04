@@ -1,5 +1,14 @@
 toggledShorts=false;
 
+//| All functions |###########################################
+
+function hideComments(){
+  const comments=document.querySelector("#comments");
+
+  if(comments){
+    comments.remove();
+  }
+}
 function hideCategories(){
   const categories=document.querySelector("iron-selector#chips");
 
@@ -59,21 +68,27 @@ function hideShorts(){
     console.log("Redirecting from Shorts...");
     window.location.replace("https://www.youtube.com/");
 }
-
 }
 
 function checkhome() {
-    const url= window.location.href;
-    return /^https?:\/\/(www\.)?youtube\.com\/?$/.test(url);
+    return window.location.pathname=="/";
 }
 
-function hideHome(){
-
+function fixHome(){
   const home=document.querySelector("#contents");
   const searchCont=document.querySelector("#center.style-scope.ytd-masthead");
   const logo=document.querySelector("#logo-icon");
   const country=document.querySelector("#country-code");
 
+}
+
+function hideHome(){
+  const home=document.querySelector("#contents");
+  const searchCont=document.querySelector("#center.style-scope.ytd-masthead");
+  const logo=document.querySelector("#logo-icon");
+  const country=document.querySelector("#country-code");
+
+  
   if (checkhome()){
     if(home){ 
       home.style.display="none";
@@ -94,8 +109,7 @@ function hideHome(){
       country.style.top="25vh";
       country.style.left="62vw";
     }
-  }
-  else{
+  }else{
     if(home){ 
       home.style.display="";
     }
@@ -113,12 +127,12 @@ function hideHome(){
     if(country){
       country.style.display="none";
     }
-  }
-
 }
+}
+  
 
 function hideSuggestions(){
-  const div=document.querySelector("#secondary");
+  const div=document.querySelector("#items.style-scope.ytd-watch-next-secondary-results-renderer");
   div.remove();
 }
 
@@ -127,9 +141,9 @@ function hideHam(){
   if(ham){
     ham.remove();
   }
-
 }
 
+//| Mutation observer |###########################################
 
 const observer = new MutationObserver(() =>{
   chrome.storage.local.get("hideshorts", (data) => {
@@ -146,6 +160,12 @@ const observer = new MutationObserver(() =>{
     if (data.hidesidebar) {
         hideSidebar();
     } 
+  });
+
+  chrome.storage.local.get("hidecomments", (data) => {
+    if (data.hidecomments) {
+        hideComments();
+    }
   });
 
   chrome.storage.local.get("hideham", (data) => {
@@ -180,6 +200,8 @@ const observer = new MutationObserver(() =>{
 });
 
 
+//| Checking for messages |###########################################
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.hideshorts !== undefined) {
       if (message.hideshorts) {
@@ -212,6 +234,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if(message.hidesidebar!==undefined){
     if(message.hideham){
       hideham();
+    }
+  }
+
+  if(message.hidecomments!==undefined){
+    if(message.hidecomments){
+      hideComments();
     }
   }
   if(message.theme!==undefined && message.tabID!==undefined){

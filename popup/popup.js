@@ -5,7 +5,7 @@ const hcats=document.getElementById("hidecategories");
 const hhome=document.getElementById("hidehome");
 const hsug=document.getElementById("hidesuggestions");
 const hham=document.getElementById("hideham");
-
+const hidecom=document.getElementById("hidecomments");
 
 // Checking if they are already set
 chrome.storage.local.get("hideshorts", (data) => {
@@ -26,8 +26,13 @@ chrome.storage.local.get("hidesuggestions", (data) => {
     hsug.checked = data.hidesuggestions || false;
 });
 
+
 chrome.storage.local.get("hideham", (data) => {
     hham.checked = data.hideham|| false;
+});
+
+chrome.storage.local.get("hidecomments", (data) => {
+    hidecom.checked = data.hidecomments|| false;
 });
 
 // If the switches are changed, set the local variable
@@ -65,6 +70,7 @@ hcats.addEventListener("change", () => {
     });
 });
 
+const tp=document.getElementById("homeType");
 
 // for removing homescreen feed
 hhome.addEventListener("change", () => {
@@ -101,6 +107,20 @@ hham.addEventListener("change", () => {
         }
     });
 });
+
+// For removing comment section
+hidecom.addEventListener("change", () => {
+    const is_com_enabled = hidecom.checked;
+
+    chrome.storage.local.set({ hidecomments:is_com_enabled});
+
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs[0]) {
+            chrome.tabs.sendMessage(tabs[0].id, { hidecomments: is_com_enabled});
+        }
+    });
+});
+
 
 
 

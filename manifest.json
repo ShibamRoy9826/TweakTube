@@ -27,6 +27,14 @@
             "https://*.youtube.com/*",
             "https://youtube.com/*"
           ]
+        },
+        {
+          "js": ["scripts/preload_content.js"],
+          "matches": [
+            "https://youtube.com/",
+            "https://www.youtube.com/"
+          ],
+          "run_at":"document_start"
         }
       ],
     "action": {
