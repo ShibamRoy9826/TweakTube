@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "TweakTube",
     "version": "1.1.0",
-    "description": "Helps to tweak youtube to make it minimalistic",
+    "description": "Helps you to customize youtube to your liking!",
     "permissions": ["activeTab","scripting","storage"],
     "icons": {
         "16": "assets/logo_16.png",
