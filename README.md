@@ -1,6 +1,7 @@
 # TweakTube
-
-![logo](assets/logo_128.png)
+<div align="center">
+<img src="Screenshots/promo_tile.png">
+</div>
 
 A chrome extension that allows you to customize [YouTube](https://youtube.com) to your liking!
 
@@ -22,16 +23,17 @@ Along with that:
 - It is extremely simple to use!
 
 ## Demo 📷
+<div align="center">
+    <img src="Screenshots/01.png" width="45%">
+    <img src="Screenshots/02.png" width="45%">
+</div>
 
-<img src="Screenshots/01.png" width="50%">
+<div align="center">
+    <img src="Screenshots/03.png" width="45%">
+    <img src="Screenshots/04.png" width="45%">
+</div>
 
-<img src="Screenshots/02.png" width="50%">
-
-<img src="Screenshots/03.png" width="50%">
-
-<img src="Screenshots/04.png" width="50%">
-
-## Theme list
+## Theme list 🎨
 
 This extension includes a lot of themes for youtube, here's the list:
 
