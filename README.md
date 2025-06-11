@@ -88,6 +88,10 @@ git clone https://github.com/ShibamRoy9826/tweaktube.git
 - [ ] Make a website for TweakTube
 - [ ] Make a youtube video for TweakTube
 
+## License 📄
+
+This project uses the [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html) license.
+
 ## Contributing 🙏
 
 Everyone is welcome to contribute to the code!
